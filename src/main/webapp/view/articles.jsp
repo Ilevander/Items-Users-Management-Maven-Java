@@ -29,7 +29,7 @@
                 <td>${article.quantite}</td>
                 <td>${article.price}</td>
                 <td>
-                    <a href="editArticle.jsp?id=${article.id}" class="btn btn-warning">Edit</a>
+                    <a href="editArticle?id=${article.id}" class="btn btn-warning">Edit</a>
                     <form action="deleteArticle" method="post" style="display:inline;">
                         <input type="hidden" name="id" value="${article.id}" />
                         <button type="submit" class="btn btn-danger">Delete</button>

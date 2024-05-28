@@ -18,7 +18,7 @@ public class ServiceImpl implements IService {
         User u = dao.getUserByUsername(username);
         if (u == null)
             return false;
-        return (password.equals(u.getPassword()));
+        return password.equals(u.getPassword());
     }
 
     @Override
@@ -26,4 +26,13 @@ public class ServiceImpl implements IService {
         return daoArticle.findAll();
     }
 
+    @Override
+    public Article findArticleById(Long id) {
+        return daoArticle.findById(id);
+    }
+
+    @Override
+    public void updateArticle(Article article) {
+        daoArticle.update(article);
+    }
 }
