@@ -1,4 +1,4 @@
-package ma.formations.jpa.presentation.controller;
+package ma.formations.jpa.presentation.controller.article;
 
 import java.io.IOException;
 import java.sql.SQLException;
