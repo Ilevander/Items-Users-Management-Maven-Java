@@ -35,4 +35,8 @@ public class ServiceImpl implements IService {
     public void updateArticle(Article article) {
         daoArticle.update(article);
     }
+    @Override
+    public void deleteArticle(Long id) {
+        daoArticle.delete(id);
+    }
 }

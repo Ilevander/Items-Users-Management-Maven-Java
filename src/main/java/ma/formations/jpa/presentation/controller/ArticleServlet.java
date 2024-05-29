@@ -18,10 +18,13 @@ public class ArticleServlet extends HttpServlet {
     private IService service = new ServiceImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-       List<Article> articles = service.getAllArticle();
-       request.setAttribute("articles", articles);
-       request.getRequestDispatcher("/view/welcome.jsp").forward(request, response);
+            throws ServletException, IOException {
+        List<Article> articles = service.getAllArticle();
+        request.setAttribute("articles", articles);
+        String successMessage = request.getParameter("successMessage");
+        if (successMessage != null) {
+            request.setAttribute("successMessage", successMessage);
+        }
+        request.getRequestDispatcher("/view/articles.jsp").forward(request, response);
     }
-
 }

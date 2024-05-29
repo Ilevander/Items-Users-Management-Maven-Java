@@ -11,4 +11,6 @@ public interface IService {
     Article findArticleById(Long id);
 
     void updateArticle(Article article);
+
+    void deleteArticle(Long id);
 }
