@@ -13,4 +13,8 @@ public interface IService {
     void updateArticle(Article article);
 
     void deleteArticle(Long id);
+
+    boolean addArticle(Article article);
+
+    Article getArticleById(int id);
 }

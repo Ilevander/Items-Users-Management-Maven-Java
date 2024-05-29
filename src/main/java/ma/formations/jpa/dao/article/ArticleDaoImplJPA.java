@@ -285,4 +285,16 @@ public class ArticleDaoImplJPA implements IArticleDao {
       }
       return articles;
    }
+
+   @Override
+   public Article getArticleById(int id) {
+      Article article = null;
+      try {
+         session = DatabaseManager.getSessionFactory().createEntityManager();
+         article = session.find(Article.class, (long) id);
+      } catch (Exception e) {
+          throw new RuntimeException(e);
+      }
+       return article;
+   }
 }

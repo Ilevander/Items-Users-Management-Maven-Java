@@ -20,4 +20,5 @@ public interface IArticleDao {
     List<Article> findAll(int pageNumber, int pageSize);
     List<Article> findByCategory(String category);
     List<Article> findMostRecent(int limit);
+    Article getArticleById(int id);
 }

@@ -6,37 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script>
-        function confirmDelete(articleId) {
-            if (confirm("Are you sure you want to delete this article?")) {
-                deleteArticle(articleId);
-            }
-        }
-
-        function deleteArticle(articleId) {
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "deleteArticle", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.status === "success") {
-                        document.getElementById("articleRow-" + articleId).remove();
-                        document.getElementById("successMessage").style.display = "block";
-                    }
-                }
-            };
-            xhr.send("id=" + articleId);
-        }
-    </script>
 </head>
 <body>
 <div class="container">
     <h2>Articles List</h2>
-    <a href="addArticle.jsp" class="btn btn-primary mb-2">Add New Article</a>
-    <div id="successMessage" class="alert alert-success" style="display:none;">
-        Article deleted successfully!
-    </div>
+    <a href="<c:url value='/articles.do?action=new' />" class="btn btn-primary mb-2">Add New Article</a>
+
+    <c:if test="${not empty successMessage}">
+        <div class="alert alert-success">${successMessage}</div>
+    </c:if>
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger">${errorMessage}</div>
+    </c:if>
+
     <table class="table">
         <thead class="thead-dark">
         <tr>
@@ -55,8 +37,8 @@
                 <td>${article.quantite}</td>
                 <td>${article.price}</td>
                 <td>
-                    <a href="editArticle?id=${article.id}" class="btn btn-warning">Edit</a>
-                    <button type="button" class="btn btn-danger" onclick="confirmDelete(${article.id})">Delete</button>
+                    <a href="<c:url value='/articles.do?action=edit&id=${article.id}' />" class="btn btn-warning">Edit</a>
+                    <a href="<c:url value='/articles.do?action=delete&id=${article.id}' />" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         </c:forEach>

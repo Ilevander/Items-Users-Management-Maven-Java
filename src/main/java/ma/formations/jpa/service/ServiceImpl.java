@@ -35,8 +35,25 @@ public class ServiceImpl implements IService {
     public void updateArticle(Article article) {
         daoArticle.update(article);
     }
+
     @Override
     public void deleteArticle(Long id) {
         daoArticle.delete(id);
+    }
+
+    @Override
+    public boolean addArticle(Article article) {
+        try {
+            daoArticle.save(article);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public Article getArticleById(int id) {
+        return daoArticle.getArticleById(id);
     }
 }
